@@ -1,26 +1,21 @@
 [
   {
-    "index": 1,
     "key": "1",
     "value": "One"
   },
   {
-    "index": 2,
     "key": "two",
     "value": "Two"
   },
   {
-    "index": 3,
     "key": "abc",
     "value": "Alphabet"
   },
   {
-    "index": 4,
     "key": "ABC",
     "value": "Big Big Big"
   },
   {
-    "index": 5,
     "key": "meow",
     "value": "Kitty"
   }
