@@ -7,9 +7,11 @@ public class Dictionaries implements Connectable {
     String value;
     private boolean isConnect;
 
+
     public Dictionaries(String key, String value) {
         this.key = key;
         this.value = value;
+
     }
 
     public String getKey() {
@@ -23,17 +25,18 @@ public class Dictionaries implements Connectable {
     @Override
     public void openConnection() {
         isConnect = true;
+        System.out.println("Открыто");
 
     }
 
     @Override
     public void closeConnection() {
         isConnect = false;
-
+        System.out.println("Закрыто");
     }
 
     @Override
-    public void checkConnection(int index) throws Exception {
+    public void checkConnection() throws Exception {
         if (isConnect == false) {
             throw new Exception();
         } else {
@@ -41,7 +44,6 @@ public class Dictionaries implements Connectable {
         }
     }
 
-    @Override
     public void readStringWithIndex(Dictionaries[] dictionaries) throws Exception {
         Scanner scanner = new Scanner(System.in);
         int x = scanner.nextInt();
@@ -124,7 +126,7 @@ public class Dictionaries implements Connectable {
                 System.out.println(dictionaries[2].key + dictionaries[2].value);
                 System.out.println(dictionaries[3].key + dictionaries[3].value);
                 System.out.println(dictionaries[4].key + dictionaries[4].value);
-            }
+            } else throw new Exception("Индекс не найден");
         } else if (index == 2) {
             if (indexEnd == 1) {
                 throw new Exception("Нельзя вернуть предыдущую строку");
@@ -142,7 +144,7 @@ public class Dictionaries implements Connectable {
                 System.out.println(dictionaries[2].key + dictionaries[2].value);
                 System.out.println(dictionaries[3].key + dictionaries[3].value);
                 System.out.println(dictionaries[4].key + dictionaries[4].value);
-            }
+            } else throw new Exception("Индекс не найден");
         } else if (index == 3) {
             if (indexEnd == 1) {
                 throw new Exception("Нельзя вернуть предыдущую строку");
@@ -157,7 +159,7 @@ public class Dictionaries implements Connectable {
                 System.out.println(dictionaries[2].key + dictionaries[2].value);
                 System.out.println(dictionaries[3].key + dictionaries[3].value);
                 System.out.println(dictionaries[4].key + dictionaries[4].value);
-            }
+            } else throw new Exception("Индекс не найден");
         } else if (index == 4) {
             if (indexEnd == 1) {
                 throw new Exception("Нельзя вернуть предыдущую строку");
@@ -170,7 +172,7 @@ public class Dictionaries implements Connectable {
             } else if (indexEnd == 5) {
                 System.out.println(dictionaries[3].key + dictionaries[3].value);
                 System.out.println(dictionaries[4].key + dictionaries[4].value);
-            }
+            } else throw new Exception("Индекс не найден");
         } else if (index == 5) {
             if (indexEnd == 1) {
                 throw new Exception("Нельзя вернуть предыдущую строку");
@@ -182,8 +184,8 @@ public class Dictionaries implements Connectable {
                 throw new Exception("Нельзя вернуть предыдущую строку");
             } else if (indexEnd == 5) {
                 System.out.println(dictionaries[4].key + dictionaries[4].value);
-            }
-        }
+            } else throw new Exception("Индекс не найден");
+        } else throw new Exception("Индекс не найден");
     }
 
     @Override
@@ -198,8 +200,8 @@ public class Dictionaries implements Connectable {
         String key = scanner.nextLine();
         String value = scanner.nextLine();
         String f = "|%-5s|%-15s|";
-        System.out.println(String.format(f,dictionaries.getKey() + dictionaries.getValue()));
-        System.out.println(String.format(f, key , value));
+        System.out.println(String.format(f, dictionaries.getKey() + dictionaries.getValue()));
+        System.out.println(String.format(f, key, value));
 
 
     }
@@ -210,36 +212,31 @@ public class Dictionaries implements Connectable {
         System.out.println("Введите индекс для смены значения");
         Scanner scanner = new Scanner(System.in);
         int a = scanner.nextInt();
-        if ( a == 1) {
+        if (a == 1) {
             System.out.println("Введите новое значение");
             String newValue = scanner.nextLine();
-            dictionaries[0].value.equals(newValue);
             System.out.println("Новая строка");
-            System.out.println(String.format(f, dictionaries[0].key, dictionaries[0].value));
+            System.out.println(String.format(f, dictionaries[0].key, newValue));
         } else if (a == 2) {
             System.out.println("Введите новое значение");
             String newValue = scanner.nextLine();
-            dictionaries[1].value.equals(newValue);
             System.out.println("Новая строка");
-            System.out.println(String.format(f, dictionaries[1].key, dictionaries[1].value));
+            System.out.println(String.format(f, dictionaries[1].key, newValue));
         } else if (a == 3) {
             System.out.println("Введите новое значение");
             String newValue = scanner.nextLine();
-            dictionaries[2].value.equals(newValue);
             System.out.println("Новая строка");
-            System.out.println(String.format(f, dictionaries[2].key, dictionaries[2].value));
+            System.out.println(String.format(f, dictionaries[2].key, newValue));
         } else if (a == 4) {
             System.out.println("Введите новое значение");
             String newValue = scanner.nextLine();
-            dictionaries[3].value.equals(newValue);
             System.out.println("Новая строка");
-            System.out.println(String.format(f, dictionaries[3].key, dictionaries[3].value));
+            System.out.println(String.format(f, dictionaries[3].key, newValue));
         } else if (a == 5) {
             System.out.println("Введите новое значение");
             String newValue = scanner.nextLine();
-            dictionaries[4].value.equals(newValue);
             System.out.println("Новая строка");
-            System.out.println(String.format(f, dictionaries[4].key, dictionaries[4].value));
+            System.out.println(String.format(f, dictionaries[4].key, newValue));
         } else throw new Exception("Индекс не найден");
 
 
@@ -254,28 +251,23 @@ public class Dictionaries implements Connectable {
         if (key.equals(dictionaries[0].key)) {
             System.out.println("Введите новое значение");
             String newValue = scanner.nextLine();
-            dictionaries[0].value.equals(newValue);
-            System.out.println(String.format(f, dictionaries[0].key , dictionaries[0].value));
+            System.out.println(String.format(f, dictionaries[0].key, newValue));
         } else if (key.equals(dictionaries[1].key)) {
             System.out.println("Введите новое значение");
             String newValue = scanner.nextLine();
-            dictionaries[1].value.equals(newValue);
-            System.out.println(String.format(f, dictionaries[1].key , dictionaries[1].value));
+            System.out.println(String.format(f, dictionaries[1].key, newValue));
         } else if (key.equals(dictionaries[2].key)) {
             System.out.println("Введите новое значение");
             String newValue = scanner.nextLine();
-            dictionaries[2].value.equals(newValue);
-            System.out.println(String.format(f, dictionaries[2].key , dictionaries[2].value));
+            System.out.println(String.format(f, dictionaries[2].key, newValue));
         } else if (key.equals(dictionaries[3].key)) {
             System.out.println("Введите новое значение");
             String newValue = scanner.nextLine();
-            dictionaries[3].value.equals(newValue);
-            System.out.println(String.format(f, dictionaries[3].key , dictionaries[3].value));
+            System.out.println(String.format(f, dictionaries[3].key, newValue));
         } else if (key.equals(dictionaries[4].key)) {
             System.out.println("Введите новое значение");
             String newValue = scanner.nextLine();
-            dictionaries[4].value.equals(newValue);
-            System.out.println(String.format(f, dictionaries[4].key , dictionaries[4].value));
-        }
+            System.out.println(String.format(f, dictionaries[4].key, newValue));
+        } else throw new Exception("Ключ не найден");
     }
 }
